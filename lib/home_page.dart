@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
       List<Team> fetchedTeams = [];
       for (var data in jsonData) {
         final team = Team(
+          id:data['id'] ,
           title: data['title'],
           body: data['body'],
         );
@@ -46,12 +47,18 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.black,
+                    color: Color(0xFF262626),
+                    shape: BoxShape.rectangle, // Замените 'RoundedRectangle' на 'BoxShape.rectangle'
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: ListTile(
-                    title: Text(teams[index].title, style: TextStyle(color: Colors.redAccent)),
-                    subtitle: Text(teams[index].body, style: TextStyle(color: Colors.white)),
+                    title: Text(teams[index].id.toString(), style: TextStyle(color: Colors.redAccent)),
+                    subtitle: Column(
+                      children: [
+                        Text(teams[index].title, style: TextStyle(color: Colors.redAccent)),
+                        Text(teams[index].body, style: TextStyle(color: Colors.white)),
+                      ],
+                    ),
                   ),
                 );
               },
